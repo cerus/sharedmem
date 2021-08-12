@@ -51,6 +51,9 @@ Read:\
 Write:\
 `mmf.write(0, new byte[] { 1, 2, 3 }`
 
+In order to load the native library, sharedmem needs to save it to a temporary folder on the disk. If you don't want that you can enable "primitive
+loading" by calling `LibraryLoader.enablePrimitiveLoading()`. Ensure that the native library is in Java's library folder if you enable this.
+
 ## Examples
 
 ```java
