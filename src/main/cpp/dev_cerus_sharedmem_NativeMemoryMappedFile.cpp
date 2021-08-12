@@ -108,7 +108,7 @@ JNIEXPORT jint JNICALL Java_dev_cerus_sharedmem_NativeMemoryMappedFile_writeNati
     }
 
     size_t length = (size_t) env->GetArrayLength(data);
-    if(length + offset >= region.get_size()) {
+    if(length + offset > region.get_size()) {
         return 2;
     }
 
