@@ -21,8 +21,8 @@ Shared memory for Java
 
 ## What is sharedmem?
 
-sharedmem allows you to access shared memory / memory mapped files in Java. sharedmem is basically an abstraction layer on top of the boost
-interprocess library.
+sharedmem allows you to access shared memory / memory mapped files in Java. sharedmem is basically an abstraction layer on top of
+the [boost interprocess](https://www.boost.org/doc/libs/1_76_0/doc/html/interprocess.html) library.
 
 > **WARNING**\
 > I have basically zero experience with C++ so the native code is probably awful. Someone with more experience than me has to clean that up eventually.
