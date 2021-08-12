@@ -37,6 +37,8 @@ Simply integrate sharedmem with your favorite build tool into your project, and 
 
 ## Usage
 
+[Javadocs](https://cerus.dev/api/sharedmem)
+
 Create a new memory mapped file object:\
 `MemoryMappedFile mmf = MemoryMappedFile.of("name");`
 
