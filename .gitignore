@@ -1,6 +1,7 @@
 .idea/
 target/
 lib/
+boost/
 *.iml
 dependency-reduced-pom.xml
 *.o
