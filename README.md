@@ -7,6 +7,8 @@
 ███████ ██   ██ ██   ██ ██   ██ ███████ ██████  ██      ██ ███████ ██      ██
 Shared memory for Java
     </code></pre>
+
+   <p align="center"><img src="https://img.shields.io/github/license/cerus/sharedmem" alt="GitHub"> <a href="https://github.com/cerus/sharedmem/issues"><img src="https://img.shields.io/github/issues/cerus/sharedmem" alt="GitHub issues"></a> <a href="https://github.com/cerus/sharedmem/releases/latest"><img src="https://img.shields.io/github/v/release/cerus/sharedmem" alt="GitHub release (latest by date)"></a> <img src="https://img.shields.io/github/stars/cerus/sharedmem" alt="GitHub Repo stars"> <a href="https://github.com/sponsors/cerus"><img src="https://img.shields.io/github/sponsors/cerus" alt="GitHub Sponsors"></a></p>
 </div>
 
 ## Table of contents
@@ -34,6 +36,19 @@ sharedmem is technically compatible with Linux and Windows, but no native Window
 ## Installation
 
 Simply integrate sharedmem with your favorite build tool into your project, and you are good to go.
+
+Maven:
+
+```xml
+
+<dependencies>
+    <dependency>
+        <groupId>dev.cerus</groupId>
+        <artifactId>sharedmem</artifactId>
+        <version>1.0.0</version>
+    </dependency>
+</dependencies>
+```
 
 ## Usage
 
