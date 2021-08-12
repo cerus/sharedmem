@@ -10,11 +10,12 @@ using namespace boost::interprocess;
 
 std::string jstring2string(JNIEnv*, jstring);
 
+bool is_open;
 shared_memory_object shm;
 mapped_region region;
 
-JNIEXPORT jint JNICALL Java_dev_cerus_sharedmem_NativeMemoryMappedFile_open  (JNIEnv *env, jobject obj, jstring mapName, jint modeOpen, jint modeRw, jlong capacity) {
-    if(!&shm || !&region) {
+JNIEXPORT jint JNICALL Java_dev_cerus_sharedmem_NativeMemoryMappedFile_open (JNIEnv *env, jobject obj, jstring mapName, jint modeOpen, jint modeRw, jlong capacity) {
+    if(is_open) {
         return 1;
     }
 
@@ -40,6 +41,8 @@ JNIEXPORT jint JNICALL Java_dev_cerus_sharedmem_NativeMemoryMappedFile_open  (JN
             // Truncate shm after creation
 		    shm.truncate(capacity);
         }
+
+        is_open = true;
     } catch (const boost::interprocess::interprocess_exception& e) {
         std::cout << e.what() << std::endl;
         return 2;
@@ -48,16 +51,21 @@ JNIEXPORT jint JNICALL Java_dev_cerus_sharedmem_NativeMemoryMappedFile_open  (JN
 }
 
 JNIEXPORT jint JNICALL Java_dev_cerus_sharedmem_NativeMemoryMappedFile_closeNative (JNIEnv *env, jobject obj) {
-    if(&shm || &region) {
+    if(!is_open) {
         return 1;
     }
 
     region.~mapped_region();
     shm.~shared_memory_object();
+    is_open = false;
     return 0;
 }
 
 JNIEXPORT jbyteArray JNICALL Java_dev_cerus_sharedmem_NativeMemoryMappedFile_readNative  (JNIEnv *env, jobject thisObj, jint offset, jint len) {
+    if(!is_open) {
+        return NULL;
+    }
+
     int actualLen;
     if(len == -1) {
         actualLen = region.get_size();
@@ -81,6 +89,10 @@ JNIEXPORT jbyteArray JNICALL Java_dev_cerus_sharedmem_NativeMemoryMappedFile_rea
 }
 
 JNIEXPORT jint JNICALL Java_dev_cerus_sharedmem_NativeMemoryMappedFile_writeNative  (JNIEnv *env, jobject obbj, jint offset, jbyteArray data) {
+    if(!is_open) {
+        return 1;
+    }
+
     size_t length = (size_t) env->GetArrayLength(data);
     jbyte* pBytes = env->GetByteArrayElements(data, NULL);
 

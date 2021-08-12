@@ -9,8 +9,10 @@ public class Test {
         file.open(MemoryMappedFile.OpenMode.OPEN, MemoryMappedFile.RWMode.READ_ONLY, 0);
         final byte[] read = file.read(0, -1);
         file.close();
+        final byte[] read2 = file.read(0, -1);
 
         System.out.println(Arrays.toString(read));
+        System.out.println(Arrays.toString(read2));
     }
 
 }

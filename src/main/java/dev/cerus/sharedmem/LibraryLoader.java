@@ -22,6 +22,8 @@ public class LibraryLoader {
         write(stream, new File(tempFolder, "lib" + name + ".so"));
         //stream = LibraryLoader.class.getClassLoader().getResourceAsStream("/lib" + name + ".dll");
         //write(stream, new File(tempFolder, "lib" + name + ".dll"));
+
+        loadLib(name);
     }
 
     private static void write(final InputStream stream, final File file) {
