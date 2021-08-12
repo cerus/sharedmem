@@ -6,3 +6,5 @@ boost/
 dependency-reduced-pom.xml
 *.o
 *.so
+
+src/main/java/dev/cerus/sharedmem/Test.java

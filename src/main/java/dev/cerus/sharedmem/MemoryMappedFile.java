@@ -2,6 +2,10 @@ package dev.cerus.sharedmem;
 
 public interface MemoryMappedFile {
 
+    static MemoryMappedFile of(final String name) {
+        return new NativeMemoryMappedFile(name);
+    }
+
     byte[] read(int offset, int length);
 
     void write(byte[] data);

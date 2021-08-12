@@ -108,6 +108,10 @@ JNIEXPORT jint JNICALL Java_dev_cerus_sharedmem_NativeMemoryMappedFile_writeNati
     }
 
     size_t length = (size_t) env->GetArrayLength(data);
+    if(length + offset >= region.get_size()) {
+        return 2;
+    }
+
     jbyte* pBytes = env->GetByteArrayElements(data, NULL);
 
     std::memcpy(((char*)region.get_address())+offset, (char*) pBytes, length);

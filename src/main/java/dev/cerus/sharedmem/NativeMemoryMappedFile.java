@@ -69,14 +69,25 @@ public class NativeMemoryMappedFile implements MemoryMappedFile {
 
     @Override
     public void write(final int offset, final byte[] data) {
-        this.writeNative(offset, data);
+        this.write(0, data.length, offset, data);
     }
 
     @Override
     public void write(final int srcOffset, final int len, final int dstOffset, final byte[] data) {
-        final byte[] arr = new byte[len];
-        System.arraycopy(data, srcOffset, arr, 0, len);
-        this.writeNative(dstOffset, arr);
+        final byte[] arr;
+        if (len != data.length) {
+            arr = new byte[len];
+            System.arraycopy(data, srcOffset, arr, 0, len);
+        } else {
+            arr = data;
+        }
+
+        final int writeResult = this.writeNative(dstOffset, arr);
+        if (writeResult == 1) {
+            throw new UnsupportedOperationException("File is not open");
+        } else if (writeResult == 2) {
+            throw new IndexOutOfBoundsException("dstOffset + len >= capacity");
+        }
     }
 
     private native byte[] readNative(int offset, int length);
