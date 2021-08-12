@@ -45,7 +45,7 @@ public class NativeMemoryMappedFile implements MemoryMappedFile {
         if (openResult == 1) {
             throw new UnsupportedOperationException("File is already open");
         } else if (openResult == 2) {
-            throw new IllegalStateException("Internal error");
+            throw new IllegalStateException("Internal error: " + this.lastError());
         }
     }
 
@@ -86,5 +86,7 @@ public class NativeMemoryMappedFile implements MemoryMappedFile {
     private native int open(String mapName, int openMode, int rwMode, long capacity);
 
     private native int closeNative();
+
+    private native String lastError();
 
 }

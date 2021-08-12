@@ -13,6 +13,11 @@ std::string jstring2string(JNIEnv*, jstring);
 bool is_open;
 shared_memory_object shm;
 mapped_region region;
+char* last_error;
+
+JNIEXPORT jstring JNICALL Java_dev_cerus_sharedmem_NativeMemoryMappedFile_lastError (JNIEnv * env, jobject obj) {
+    return (env)->NewStringUTF(last_error);
+}
 
 JNIEXPORT jint JNICALL Java_dev_cerus_sharedmem_NativeMemoryMappedFile_open (JNIEnv *env, jobject obj, jstring mapName, jint modeOpen, jint modeRw, jlong capacity) {
     if(is_open) {
@@ -35,16 +40,25 @@ JNIEXPORT jint JNICALL Java_dev_cerus_sharedmem_NativeMemoryMappedFile_open (JNI
         } else if(modeOpen == 2) {
             shm = shared_memory_object(open_or_create, jstring2string(env, mapName).c_str(), rwMode);
         }
-        region = mapped_region(shm, rwMode);
 
         if(modeOpen != 0) {
             // Truncate shm after creation
-		    shm.truncate(capacity);
+            // Dirty hack
+            try {
+    		    shm.truncate(capacity);
+		    } catch (const boost::interprocess::interprocess_exception& ex) {
+		    }
         }
+
+        // Create region AFTER truncating..
+        region = mapped_region(shm, rwMode);
 
         is_open = true;
     } catch (const boost::interprocess::interprocess_exception& e) {
-        std::cout << e.what() << std::endl;
+        //std::cout << e.what() << std::endl;
+        // Copy to last_error field instead of printing to cout
+        last_error = (char*)malloc(sizeof(e.what()));
+        strcpy(last_error, e.what());
         return 2;
     }
     return 0;
@@ -96,7 +110,7 @@ JNIEXPORT jint JNICALL Java_dev_cerus_sharedmem_NativeMemoryMappedFile_writeNati
     size_t length = (size_t) env->GetArrayLength(data);
     jbyte* pBytes = env->GetByteArrayElements(data, NULL);
 
-    std::memcpy(region.get_address(), (char*) pBytes, length);
+    std::memcpy(((char*)region.get_address())+offset, (char*) pBytes, length);
 
     env->ReleaseByteArrayElements(data, pBytes, JNI_ABORT);
     return 0;

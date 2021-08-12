@@ -39,6 +39,9 @@ JNIEXPORT jint JNICALL Java_dev_cerus_sharedmem_NativeMemoryMappedFile_open
 JNIEXPORT jint JNICALL Java_dev_cerus_sharedmem_NativeMemoryMappedFile_closeNative
   (JNIEnv *, jobject);
 
+JNIEXPORT jstring JNICALL Java_dev_cerus_sharedmem_NativeMemoryMappedFile_lastError
+  (JNIEnv *, jobject);
+
 #ifdef __cplusplus
 }
 #endif
