@@ -4,21 +4,21 @@ export JAVA_HOME=/usr/lib/jvm/java-11-openjdk/
 
 # Preparation
 echo "Preparing..."
- if ! [ -d boost ]   # For file "if [ -f /home/rama/file ]"
- then
-     echo "Downloading Boost library"
-     mkdir boost && cd boost
+if ! [ -d boost ]
+then
+    echo "Downloading Boost library"
+    mkdir boost && cd boost
 
-     # This was tedious to figure out
-     git clone https://github.com/boostorg/core.git
-     git clone https://github.com/boostorg/config.git
-     git clone https://github.com/boostorg/move.git
-     git clone https://github.com/boostorg/static_assert.git
-     git clone https://github.com/boostorg/assert.git
-     git clone https://github.com/boostorg/intrusive.git
-     git clone https://github.com/boostorg/interprocess.git
-     cd ..
- fi
+    # This was tedious to figure out
+    git clone https://github.com/boostorg/core.git
+    git clone https://github.com/boostorg/config.git
+    git clone https://github.com/boostorg/move.git
+    git clone https://github.com/boostorg/static_assert.git
+    git clone https://github.com/boostorg/assert.git
+    git clone https://github.com/boostorg/intrusive.git
+    git clone https://github.com/boostorg/interprocess.git
+    cd ..
+fi
 
 # Compile
 echo "Compiling..."
