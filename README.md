@@ -19,6 +19,7 @@ Shared memory for Java
 - Usage
 - Examples
 - Contributing
+- Building from source
 - Licenses
 
 ## What is sharedmem?
@@ -98,6 +99,15 @@ class Example {
     }
 }
 ```
+
+## Building from source
+
+**Linux**\
+Requirements: Java 11, Maven, Git, g++\
+Run `./build.sh`
+
+**Windows**\
+TODO
 
 ## Licenses
 
