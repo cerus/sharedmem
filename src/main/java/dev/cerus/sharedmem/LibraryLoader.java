@@ -39,7 +39,7 @@ public class LibraryLoader {
         if (stream != null) {
             write(stream, new File(tempFolder, "lib" + name + ".so"));
         }
-        stream = LibraryLoader.class.getClassLoader().getResourceAsStream("/lib" + name + ".dll");
+        stream = LibraryLoader.class.getClassLoader().getResourceAsStream("lib/lib" + name + ".dll");
         if (stream != null) {
             write(stream, new File(tempFolder, "lib" + name + ".dll"));
         }
