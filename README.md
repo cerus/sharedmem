@@ -1,12 +1,12 @@
 <div style="text-align: center;">
-    <pre><code>
+    <center><pre><code>
 ███████ ██   ██  █████  ██████  ███████ ██████  ███    ███ ███████ ███    ███
 ██      ██   ██ ██   ██ ██   ██ ██      ██   ██ ████  ████ ██      ████  ████
 ███████ ███████ ███████ ██████  █████   ██   ██ ██ ████ ██ █████   ██ ████ ██
      ██ ██   ██ ██   ██ ██   ██ ██      ██   ██ ██  ██  ██ ██      ██  ██  ██
 ███████ ██   ██ ██   ██ ██   ██ ███████ ██████  ██      ██ ███████ ██      ██
 Shared memory for Java
-    </code></pre>
+    </code></pre></center>
 
    <p align="center"><img src="https://img.shields.io/github/license/cerus/sharedmem" alt="GitHub"> <a href="https://github.com/cerus/sharedmem/issues"><img src="https://img.shields.io/github/issues/cerus/sharedmem" alt="GitHub issues"></a> <a href="https://github.com/cerus/sharedmem/releases/latest"><img src="https://img.shields.io/github/v/release/cerus/sharedmem" alt="GitHub release (latest by date)"></a> <img src="https://img.shields.io/github/stars/cerus/sharedmem" alt="GitHub Repo stars"> <a href="https://github.com/sponsors/cerus"><img src="https://img.shields.io/github/sponsors/cerus" alt="GitHub Sponsors"></a></p>
 </div>
