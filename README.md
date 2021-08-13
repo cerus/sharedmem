@@ -32,7 +32,7 @@ the [boost interprocess](https://www.boost.org/doc/libs/1_76_0/doc/html/interpro
 
 ## Compatibility
 
-sharedmem is technically compatible with Linux and Windows, but no native Windows libraries exist yet. You could compile your own though.
+sharedmem is compatible with Linux and Windows.
 
 ## Installation
 
