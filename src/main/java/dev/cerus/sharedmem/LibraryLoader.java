@@ -26,15 +26,23 @@ public class LibraryLoader {
 
         final File tempFolder = new File(System.getProperty("java.io.tmpdir"), "javasharedmem");
         if (tempFolder.exists()) {
-            System.load(tempFolder.getAbsolutePath() + File.separator + "lib" + name + ".so");
+            if (System.getProperty("os.name").toLowerCase().contains("win")) {
+                System.load(tempFolder.getAbsolutePath() + File.separator + "lib" + name + ".dll");
+            } else {
+                System.load(tempFolder.getAbsolutePath() + File.separator + "lib" + name + ".so");
+            }
             return;
         }
         tempFolder.mkdirs();
 
-        final InputStream stream = LibraryLoader.class.getClassLoader().getResourceAsStream("lib/lib" + name + ".so");
-        write(stream, new File(tempFolder, "lib" + name + ".so"));
-        //stream = LibraryLoader.class.getClassLoader().getResourceAsStream("/lib" + name + ".dll");
-        //write(stream, new File(tempFolder, "lib" + name + ".dll"));
+        InputStream stream = LibraryLoader.class.getClassLoader().getResourceAsStream("lib/lib" + name + ".so");
+        if (stream != null) {
+            write(stream, new File(tempFolder, "lib" + name + ".so"));
+        }
+        stream = LibraryLoader.class.getClassLoader().getResourceAsStream("/lib" + name + ".dll");
+        if (stream != null) {
+            write(stream, new File(tempFolder, "lib" + name + ".dll"));
+        }
 
         loadLib(name);
     }

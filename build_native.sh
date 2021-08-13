@@ -1,7 +1,5 @@
 #!/bin/sh
 
-export JAVA_HOME=/usr/lib/jvm/java-11-openjdk/
-
 # Preparation
 echo "Preparing..."
 if ! [ -d boost ]

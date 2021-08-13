@@ -104,10 +104,16 @@ class Example {
 
 **Linux**\
 Requirements: Java 11, Maven, Git, g++\
-Run `./build.sh`
+Adjust your JAVA_HOME in `build.sh` and run `./build.sh`
 
 **Windows**\
-TODO
+Requirements: Java 11, Maven, MinGW GCC, Boost libraries
+
+1. Download the Boost libraries (https://www.boost.org/users/download/)
+2. Unzip the libraries in the project directory
+3. Run `build_native.bat`
+4. Copy `target\libsharedmem.dll` into `src\main\resources`
+5. Run `mvn clean package`
 
 ## Licenses
 
