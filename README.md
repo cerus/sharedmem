@@ -28,7 +28,8 @@ sharedmem allows you to access shared memory / memory mapped files in Java. shar
 the [boost interprocess](https://www.boost.org/doc/libs/1_76_0/doc/html/interprocess.html) library.
 
 > **WARNING**\
-> I have basically zero experience with C++ so the native code is probably awful. Someone with more experience than me has to clean that up eventually.
+> I have basically zero experience with C++ so the native code is probably awful. Someone with more experience than me has to clean that up
+> eventually.
 
 ## Compatibility
 
@@ -117,6 +118,6 @@ Requirements: Java 11, Maven, MinGW GCC, Boost libraries
 
 ## Licenses
 
-This project is licenses under the [GPL v3 license](LICENSE.txt).
+This project is licenses under the [MIT License](LICENSE.txt).
 
 Thirdparty licenses: [Boost](BOOST_LICENSE.txt)
